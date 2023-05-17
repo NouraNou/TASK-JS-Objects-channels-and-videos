@@ -6,7 +6,7 @@
  */
 
 const channels = require("./channels.json");
-// console.log(channels[0]);
+console.log(channels[0]);
 
 /**************************************************************
  * getChannelName(channel)
@@ -15,6 +15,7 @@ const channels = require("./channels.json");
  ****************************************************************/
 function getChannelName(channel) {
   // Your code here
+  return channel.name;
 }
 
 // console.log(getChannelName(channels[0]));
@@ -26,6 +27,7 @@ function getChannelName(channel) {
  ****************************************************************/
 function numberOfVideos(channel) {
   // Your code here
+  return channel.videos.length;
 }
 // console.log(numberOfVideos(channels[0]))
 
@@ -40,6 +42,11 @@ function numberOfVideos(channel) {
  ****************************************************************/
 function channelHasVideo(videoTitle, channel) {
   // Your code here
+  //channel.vedios.filter((video) => {
+  // video.title == videoTitle;
+  //});
+
+  return channel.videos.some((video) => video.title === videoTitle);
 }
 // console.log(channelHasVideo("The Universal S", channels[0]));
 // console.log(channelHasVideo("The Universal S", channels[1]));
@@ -54,6 +61,9 @@ function channelHasVideo(videoTitle, channel) {
  ****************************************************************/
 function getChannelByName(channelName, channels) {
   // Your code here
+  channels.filter((channel) => {
+    return channel.name === channelName;
+  });
 }
 // console.log(getChannelByName("PowerfulJRE", channels))
 
@@ -67,7 +77,26 @@ function getChannelByName(channelName, channels) {
  ****************************************************************/
 function getChannelByVideoTitle(videoTitle, channels) {
   // Your code here
+  const result = channels.filter((channel) => {
+    return;
+    channel.videos.filter((video) => {
+      return video.title == videoTitle;
+    });
+  });
 }
+/********************************************************************************* */
+//other solution :
+
+function getChannelByVideoTitle(videoTitle, channels) {
+  // Your code here
+  const result = channels.filter((channel) => {
+    return;
+    channel.videos.find((video) => {
+      return video.title == videoTitle;
+    });
+  });
+}
+
 // console.log(getChannelByVideoTitle("The Universal S", channels));
 
 /**************************************************************
@@ -80,7 +109,13 @@ function getChannelByVideoTitle(videoTitle, channels) {
  ****************************************************************/
 function searchChannels(query, channels) {
   // Your code here
+  channels.filters((channel) => {
+    channel.name.includes(query);
+  });
 }
+
+const name = "Noura";
+console.log(name.includes("S"));
 // console.log(searchChannels("the", channels))
 
 module.exports = {
@@ -89,5 +124,5 @@ module.exports = {
   channelHasVideo,
   getChannelByName,
   getChannelByVideoTitle,
-  searchChannels,
+  // searchChannels,
 };

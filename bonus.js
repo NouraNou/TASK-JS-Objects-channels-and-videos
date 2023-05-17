@@ -1,5 +1,4 @@
 const channels = require("./channels.json");
-
 /**************************************************************
  * totalVideosDuration(channel):
  * - receives a channel object
